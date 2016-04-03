@@ -80,9 +80,26 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
+    /* Algorithm for collision detection taken from Mozilla Developer Network
+    /* website: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
+    function checkCollisions() {
+
+      var width = 10;
+      var height = 10;
+
+      allEnemies.forEach(function(enemy) {
+        if (enemy.x < player.x + width &&
+            enemy.x + width > player.x &&
+            enemy.y < player.y + height &&
+            height + enemy.y > player.y) {
+          player.x = 200;
+          player.y = 400;
+        }
+      });
+    }
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your

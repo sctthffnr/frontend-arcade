@@ -7,7 +7,7 @@ var Enemy = function(x, y, speed) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
-    this.speed = speed
+    this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -37,8 +37,11 @@ var Player = function(x, y) {
   this.sprite = 'images/char-boy.png';
 };
 
-Player.prototype.update = function(dt) {
-
+Player.prototype.update = function() {
+  if (this.y < 0) {
+    this.x = 200;
+    this.y = 400;
+  }
 };
 
 Player.prototype.render = function() {
