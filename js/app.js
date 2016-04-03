@@ -38,10 +38,6 @@ var Player = function(x, y) {
 };
 
 Player.prototype.update = function() {
-  if (this.y < 0) {
-    this.x = 200;
-    this.y = 400;
-  }
 };
 
 Player.prototype.render = function() {
@@ -49,7 +45,6 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-  console.log(this.y);
   switch(key) {
     case 'left':
       if (this.x - 101 > -50) {
@@ -66,7 +61,12 @@ Player.prototype.handleInput = function(key) {
       }
     break;
     case 'up':
-      this.y -= 85;
+      if (this.y - 85 > 0) {
+        this.y -= 85;
+      } else {
+        this.x = 200;
+        this.y = 400;
+      }
     break;
     case 'down':
       if (this.y + 85 < 450) {
