@@ -95,6 +95,7 @@ var Engine = (function(global) {
             enemy.x + width > player.x &&
             enemy.y < player.y + height &&
             height + enemy.y > player.y) {
+          player.score -= 50;
           player.x = 200;
           player.y = 400;
         }

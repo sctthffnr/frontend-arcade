@@ -36,11 +36,13 @@ var Player = function(x, y) {
   this.y = y;
   this.sprite = 'images/char-boy.png';
   this.time = 1000;
+  this.score = 0;
 };
 
 Player.prototype.update = function(dt) {
   if (this.time <= 0) {
     this.time = 1000;
+    this.score -= 100;
     this.x = 200;
     this.y = 400;
   }
@@ -49,6 +51,8 @@ Player.prototype.update = function(dt) {
   ctx.font = "16px Arial";
   ctx.fillText('Timer:', 10, 620);
   ctx.fillText(this.time, 90, 620);
+  ctx.fillText('Score:', 10, 660);
+  ctx.fillText(this.score, 90, 660);
 };
 
 Player.prototype.render = function() {
@@ -74,8 +78,9 @@ Player.prototype.handleInput = function(key) {
     case 'up':
       if (this.y - 85 > 0) {
         this.y -= 85;
-        this.score += 100;
       } else {
+        this.score += 100;
+        this.time = 1000;
         this.x = 200;
         this.y = 400;
       }
