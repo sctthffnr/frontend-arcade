@@ -35,9 +35,20 @@ var Player = function(x, y) {
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
+  this.time = 1000;
 };
 
-Player.prototype.update = function() {
+Player.prototype.update = function(dt) {
+  if (this.time <= 0) {
+    this.time = 1000;
+    this.x = 200;
+    this.y = 400;
+  }
+  this.time -= 1;
+  ctx.clearRect(0, 0, 505, 706);
+  ctx.font = "16px Arial";
+  ctx.fillText('Timer:', 10, 620);
+  ctx.fillText(this.time, 90, 620);
 };
 
 Player.prototype.render = function() {
@@ -63,6 +74,7 @@ Player.prototype.handleInput = function(key) {
     case 'up':
       if (this.y - 85 > 0) {
         this.y -= 85;
+        this.score += 100;
       } else {
         this.x = 200;
         this.y = 400;
