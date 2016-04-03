@@ -83,8 +83,8 @@ var Engine = (function(global) {
         checkCollisions();
     }
 
-    /* Algorithm for collision detection taken from Mozilla Developer Network
-    /* website: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
+    /* Algorithm for collision detection taken from Mozilla Developer Network:
+    /* https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
     function checkCollisions() {
 
       var width = 10;
