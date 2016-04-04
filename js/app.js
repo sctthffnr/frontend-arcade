@@ -29,6 +29,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Increase the enemy's speed when an event occurs
 Enemy.prototype.increaseSpeed = function(dt) {
   if (this.speed < 500) {
     this.speed +=  10 * dt;
@@ -46,6 +47,7 @@ var Player = function(x, y) {
   this.score = 0;
 };
 
+// Draw the timer on the canvas and adjust the score if the timer runs out
 Player.prototype.update = function(dt) {
   if (this.timer <= 0) {
     this.resetTimer();
@@ -65,45 +67,54 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// The following functions control how the player character moves
+Player.prototype.left = function() {
+  if (this.x - 101 > -50) {
+    this.x -= 101;
+  }
+};
+
+Player.prototype.right = function() {
+  if (this.x + 101 < 500) {
+    this.x += 101;
+  }
+};
+
+Player.prototype.up = function() {
+  if (this.y - 85 > 0) {
+    this.y -= 85;
+  }  else {
+    this.score += 100;
+    this.resetTimer();
+    this.resetPosition();
+  }
+};
+
+Player.prototype.down = function() {
+  if (this.y + 85 < 450) {
+    this.y += 85;
+  }
+};
+
 Player.prototype.handleInput = function(key) {
   switch(key) {
-    case 'left':
-      if (this.x - 101 > -50) {
-        this.x -= 101;
-      } else {
-        break;
-      }
+    case 'left': this.left();
     break;
-    case 'right':
-      if (this.x + 101 < 500) {
-        this.x += 101;
-      } else {
-        break;
-      }
+    case 'right': this.right();
     break;
-    case 'up':
-      if (this.y - 85 > 0) {
-        this.y -= 85;
-      } else {
-        this.score += 100;
-        this.resetTimer();
-        this.resetPosition();
-      }
+    case 'up': this.up();
     break;
-    case 'down':
-      if (this.y + 85 < 450) {
-        this.y += 85;
-      } else {
-        break;
-      }
+    case 'down': this.down();
     break;
   }
 };
 
+// Reset the timer if an event occurs
 Player.prototype.resetTimer = function() {
   this.timer = 400;
 };
 
+// Reset the position if an event occurs
 Player.prototype.resetPosition = function() {
   this.x = 200;
   this.y = 400;
