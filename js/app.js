@@ -35,22 +35,22 @@ var Player = function(x, y) {
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
-  this.time = 1000;
+  this.resetTimer();
   this.score = 0;
 };
 
 Player.prototype.update = function(dt) {
-  if (this.time <= 0) {
-    this.time = 1000;
+  if (this.timer <= 0) {
+    this.resetTimer();
     this.score -= 100;
     this.x = 200;
     this.y = 400;
   }
-  this.time -= 1;
+  this.timer -= 1;
   ctx.clearRect(0, 0, 505, 706);
   ctx.font = "16px Arial";
   ctx.fillText('Timer:', 10, 620);
-  ctx.fillText(this.time, 90, 620);
+  ctx.fillText(this.timer, 90, 620);
   ctx.fillText('Score:', 10, 660);
   ctx.fillText(this.score, 90, 660);
 };
@@ -80,7 +80,7 @@ Player.prototype.handleInput = function(key) {
         this.y -= 85;
       } else {
         this.score += 100;
-        this.time = 1000;
+        this.resetTimer();
         this.x = 200;
         this.y = 400;
       }
@@ -94,6 +94,10 @@ Player.prototype.handleInput = function(key) {
     break;
   }
 };
+
+Player.prototype.resetTimer = function() {
+  this.timer = 1000;
+}
 
 
 // Now instantiate your objects.
