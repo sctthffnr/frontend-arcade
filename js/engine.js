@@ -87,8 +87,8 @@ var Engine = (function(global) {
     /* https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
     function checkCollisions(dt) {
 
-      var width = 10;
-      var height = 10;
+      var width = 25;
+      var height = 25;
 
       allEnemies.forEach(function(enemy) {
         if (enemy.x < player.x + width &&
