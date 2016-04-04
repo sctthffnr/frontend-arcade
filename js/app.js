@@ -37,7 +37,7 @@ Enemy.prototype.increaseSpeed = function(dt) {
 };
 
 Enemy.prototype.decreaseSpeed = function(dt) {
-  if (this.speed > 150) {
+  if (this.speed > 250) {
     this.speed = 250;
   }
 };
@@ -90,7 +90,7 @@ Player.prototype.up = function() {
   if (this.y - 85 > 0) {
     this.y -= 85;
   }  else {
-    this.score += 100;
+    this.score += this.timer;
     this.resetTimer();
     this.resetPosition();
   }
