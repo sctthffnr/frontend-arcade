@@ -15,6 +15,7 @@ var Enemy = function(x, y, speed) {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
   this.x += this.speed * dt;
+  this.increaseSpeed(dt);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -26,6 +27,12 @@ Enemy.prototype.render = function() {
       this.x = 0;
     }
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Enemy.prototype.increaseSpeed = function(dt) {
+  if (this.speed < 500) {
+    this.speed +=  10 * dt;
+  }
 };
 
 // Now write your own player class
@@ -43,8 +50,7 @@ Player.prototype.update = function(dt) {
   if (this.timer <= 0) {
     this.resetTimer();
     this.score -= 100;
-    this.x = 200;
-    this.y = 400;
+    this.resetPosition();
   }
   this.timer -= 1;
   ctx.clearRect(0, 0, 505, 706);
@@ -81,8 +87,7 @@ Player.prototype.handleInput = function(key) {
       } else {
         this.score += 100;
         this.resetTimer();
-        this.x = 200;
-        this.y = 400;
+        this.resetPosition();
       }
     break;
     case 'down':
@@ -96,14 +101,19 @@ Player.prototype.handleInput = function(key) {
 };
 
 Player.prototype.resetTimer = function() {
-  this.timer = 1000;
-}
+  this.timer = 400;
+};
+
+Player.prototype.resetPosition = function() {
+  this.x = 200;
+  this.y = 400;
+};
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-allEnemies = [new Enemy(0, 62, 150), new Enemy(0, 146, 250),
-              new Enemy(0, 230, 350)];
+allEnemies = [new Enemy(0, 62, 350), new Enemy(0, 146, 250),
+              new Enemy(0, 230, 150)];
 // Place the player object in a variable called player
 player = new Player(200, 400);
 
