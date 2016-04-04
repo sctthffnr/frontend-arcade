@@ -14,7 +14,7 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  this.x += this.speed * dt;
+  this.x += (this.speed + 10) * dt;
   this.increaseSpeed(dt);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -33,6 +33,12 @@ Enemy.prototype.render = function() {
 Enemy.prototype.increaseSpeed = function(dt) {
   if (this.speed < 500) {
     this.speed +=  10 * dt;
+  }
+};
+
+Enemy.prototype.decreaseSpeed = function(dt) {
+  if (this.speed > 150) {
+    this.speed = 250;
   }
 };
 

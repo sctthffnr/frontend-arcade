@@ -80,12 +80,12 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        checkCollisions();
+        checkCollisions(dt);
     }
 
     /* Algorithm for collision detection taken from Mozilla Developer Network:
     /* https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
-    function checkCollisions() {
+    function checkCollisions(dt) {
 
       var width = 10;
       var height = 10;
@@ -96,8 +96,8 @@ var Engine = (function(global) {
             enemy.y < player.y + height &&
             height + enemy.y > player.y) {
           player.score -= 50;
-          player.x = 200;
-          player.y = 400;
+          player.resetPosition();
+          enemy.decreaseSpeed(dt);
         }
       });
     }
