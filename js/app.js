@@ -36,6 +36,7 @@ Enemy.prototype.increaseSpeed = function(dt) {
   }
 };
 
+// Decrease the enemy's speed when an event occurs
 Enemy.prototype.decreaseSpeed = function(dt) {
   if (this.speed > 250) {
     this.speed = 250;
