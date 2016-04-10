@@ -1,6 +1,6 @@
 # Classic Arcade Game Clone
 
-This is an arcade game based on the classic arcade game frogger.
+This is an arcade game based on the classic arcade game Frogger.
 
 ## Gameplay
 
@@ -20,7 +20,7 @@ reach the water. If you are able to get to the water quickly, you score more
 points. Once you reach the water, the timer resets and your character's position
 is reset so that you have another chance to earn more points.
 
-There are two ways that you can lose points
+There are two ways that you can lose points:
 
 - If you get hit by a bug, you lose 50 points.
 - If the timer runs out, you lose 100 points.
@@ -37,4 +37,4 @@ before starting to speed up again.
 ## Known Issues
 
 At the moment there is no way to 'win' or 'lose' the game. It just keeps going
-on and on, regardless of your score. µ
+on and on, regardless of your score.
