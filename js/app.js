@@ -121,14 +121,18 @@ Player.prototype.down = function() {
 Player.prototype.handleInput = function(key) {
   'use strict';
   switch(key) {
-    case 'left': this.left();
-    break;
-    case 'right': this.right();
-    break;
-    case 'up': this.up();
-    break;
-    case 'down': this.down();
-    break;
+    case 'left':
+      this.left();
+      break;
+    case 'right':
+      this.right();
+      break;
+    case 'up':
+      this.up();
+      break;
+    case 'down':
+      this.down();
+      break;
   }
 };
 
