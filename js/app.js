@@ -64,10 +64,10 @@ Player.prototype.update = function(dt) {
   'use strict';
   if (this.timer <= 0) {
     this.resetTimer();
-    this.score -= 100;
+    this.modifyScore(-100);
     this.resetPosition();
   }
-  this.timer -= 1;
+  this.modifyTimer(-1);
   ctx.clearRect(0, 0, 505, 706);
   ctx.font = "16px Arial";
   ctx.fillText('Timer:', 10, 620);
@@ -79,6 +79,10 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
   'use strict';
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.modifyScore = function(value) {
+  this.score += value;
 };
 
 // The following functions control how the player character moves
@@ -101,7 +105,7 @@ Player.prototype.up = function() {
   if (this.y - 85 > 0) {
     this.y -= 85;
   }  else {
-    this.score += this.timer;
+    this.modifyScore(this.timer);
     this.resetTimer();
     this.resetPosition();
   }
@@ -126,6 +130,10 @@ Player.prototype.handleInput = function(key) {
     case 'down': this.down();
     break;
   }
+};
+
+Player.prototype.modifyTimer = function(value) {
+  this.timer += value;
 };
 
 // Reset the timer if an event occurs

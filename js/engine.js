@@ -95,7 +95,7 @@ var Engine = (function(global) {
             enemy.x + WIDTH > player.x &&
             enemy.y < player.y + HEIGHT &&
             HEIGHT + enemy.y > player.y) {
-          player.score -= 50;
+          player.modifyScore(-50);
           player.resetPosition();
           enemy.decreaseSpeed(dt);
         }
