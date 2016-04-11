@@ -87,14 +87,14 @@ var Engine = (function(global) {
     /* https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection */
     function checkCollisions(dt) {
 
-      var width = 25;
-      var height = 25;
+      var WIDTH = 71;
+      var HEIGHT = 25;
 
       allEnemies.forEach(function(enemy) {
-        if (enemy.x < player.x + width &&
-            enemy.x + width > player.x &&
-            enemy.y < player.y + height &&
-            height + enemy.y > player.y) {
+        if (enemy.x < player.x + WIDTH &&
+            enemy.x + WIDTH > player.x &&
+            enemy.y < player.y + HEIGHT &&
+            HEIGHT + enemy.y > player.y) {
           player.score -= 50;
           player.resetPosition();
           enemy.decreaseSpeed(dt);
