@@ -1,3 +1,26 @@
+// Start Global Constants
+
+// Starting position for the character
+var INIT_X = 200;
+var INIT_Y = 400;
+
+// Starting value for the timer
+var TIMER_INIT = 400;
+
+// Max speed for the bugs
+var MAX_SPEED = 500;
+
+// Speed increase for the bugs
+var SPEED_UP = 10;
+
+// Bug speed following a collision
+var RESET_SPEED = 250;
+
+// Score penalty for when the timer runs out
+var TIMER_PENALTY = -100;
+
+// End Global Constants
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -34,16 +57,16 @@ Enemy.prototype.render = function() {
 // Increase the enemy's speed when an event occurs
 Enemy.prototype.increaseSpeed = function(dt) {
   'use strict';
-  if (this.speed < 500) {
-    this.speed +=  10 * dt;
+  if (this.speed < MAX_SPEED) {
+    this.speed +=  SPEED_UP * dt;
   }
 };
 
 // Decrease the enemy's speed when an event occurs
 Enemy.prototype.decreaseSpeed = function(dt) {
   'use strict';
-  if (this.speed > 250) {
-    this.speed = 250;
+  if (this.speed > RESET_SPEED) {
+    this.speed = RESET_SPEED;
   }
 };
 
@@ -64,7 +87,7 @@ Player.prototype.update = function(dt) {
   'use strict';
   if (this.timer <= 0) {
     this.resetTimer();
-    this.modifyScore(-100);
+    this.modifyScore(TIMER_PENALTY);
     this.resetPosition();
   }
   this.modifyTimer(-1);
@@ -143,14 +166,14 @@ Player.prototype.modifyTimer = function(value) {
 // Reset the timer if an event occurs
 Player.prototype.resetTimer = function() {
   'use strict';
-  this.timer = 400;
+  this.timer = TIMER_INIT;
 };
 
 // Reset the position if an event occurs
 Player.prototype.resetPosition = function() {
   'use strict';
-  this.x = 200;
-  this.y = 400;
+  this.x = INIT_X;
+  this.y = INIT_Y;
 };
 
 
@@ -159,7 +182,7 @@ Player.prototype.resetPosition = function() {
 var allEnemies = [new Enemy(0, 62, 350), new Enemy(0, 146, 250),
               new Enemy(0, 230, 150)];
 // Place the player object in a variable called player
-var player = new Player(200, 400);
+var player = new Player(INIT_X, INIT_Y);
 
 
 

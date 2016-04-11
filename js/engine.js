@@ -89,13 +89,14 @@ var Engine = (function(global) {
 
       var WIDTH = 71;
       var HEIGHT = 25;
+      var COLLISION_PENALTY = -50;
 
       allEnemies.forEach(function(enemy) {
         if (enemy.x < player.x + WIDTH &&
             enemy.x + WIDTH > player.x &&
             enemy.y < player.y + HEIGHT &&
             HEIGHT + enemy.y > player.y) {
-          player.modifyScore(-50);
+          player.modifyScore(COLLISION_PENALTY);
           player.resetPosition();
           enemy.decreaseSpeed(dt);
         }
