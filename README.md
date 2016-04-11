@@ -2,6 +2,10 @@
 
 This is an arcade game based on the classic arcade game Frogger.
 
+## Starting the Game
+
+To start the game, open index.html in any web browser that supports HTML5 canvas.
+
 ## Gameplay
 
 ### Goal
