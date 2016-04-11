@@ -14,6 +14,7 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+  'use strict';
   this.x += this.speed * dt;
   this.increaseSpeed(dt);
     // You should multiply any movement by the dt parameter
@@ -23,6 +24,7 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
+  'use strict';
     if (this.x > 505) {
       this.x = 0;
     }
@@ -31,6 +33,7 @@ Enemy.prototype.render = function() {
 
 // Increase the enemy's speed when an event occurs
 Enemy.prototype.increaseSpeed = function(dt) {
+  'use strict';
   if (this.speed < 500) {
     this.speed +=  10 * dt;
   }
@@ -38,6 +41,7 @@ Enemy.prototype.increaseSpeed = function(dt) {
 
 // Decrease the enemy's speed when an event occurs
 Enemy.prototype.decreaseSpeed = function(dt) {
+  'use strict';
   if (this.speed > 250) {
     this.speed = 250;
   }
@@ -47,6 +51,7 @@ Enemy.prototype.decreaseSpeed = function(dt) {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x, y) {
+  'use strict';
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
@@ -56,6 +61,7 @@ var Player = function(x, y) {
 
 // Draw the timer on the canvas and adjust the score if the timer runs out
 Player.prototype.update = function(dt) {
+  'use strict';
   if (this.timer <= 0) {
     this.resetTimer();
     this.score -= 100;
@@ -71,23 +77,27 @@ Player.prototype.update = function(dt) {
 };
 
 Player.prototype.render = function() {
+  'use strict';
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // The following functions control how the player character moves
 Player.prototype.left = function() {
+  'use strict';
   if (this.x - 101 > -50) {
     this.x -= 101;
   }
 };
 
 Player.prototype.right = function() {
+  'use strict';
   if (this.x + 101 < 500) {
     this.x += 101;
   }
 };
 
 Player.prototype.up = function() {
+  'use strict';
   if (this.y - 85 > 0) {
     this.y -= 85;
   }  else {
@@ -98,12 +108,14 @@ Player.prototype.up = function() {
 };
 
 Player.prototype.down = function() {
+  'use strict';
   if (this.y + 85 < 450) {
     this.y += 85;
   }
 };
 
 Player.prototype.handleInput = function(key) {
+  'use strict';
   switch(key) {
     case 'left': this.left();
     break;
@@ -118,11 +130,13 @@ Player.prototype.handleInput = function(key) {
 
 // Reset the timer if an event occurs
 Player.prototype.resetTimer = function() {
+  'use strict';
   this.timer = 400;
 };
 
 // Reset the position if an event occurs
 Player.prototype.resetPosition = function() {
+  'use strict';
   this.x = 200;
   this.y = 400;
 };
@@ -130,10 +144,10 @@ Player.prototype.resetPosition = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-allEnemies = [new Enemy(0, 62, 350), new Enemy(0, 146, 250),
+var allEnemies = [new Enemy(0, 62, 350), new Enemy(0, 146, 250),
               new Enemy(0, 230, 150)];
 // Place the player object in a variable called player
-player = new Player(200, 400);
+var player = new Player(200, 400);
 
 
 
